@@ -60,16 +60,6 @@ variable "bucket_name" {
   type        = string
 }
 
-variable "dynamodb_table_name" {
-  description = "The name of the DynamoDB table"
-  type        = string
-}
-
-variable "dynamodb_hash_key" {
-  description = "The hash key for the DynamoDB table"
-  type        = string
-}
-
 variable "iam_role_name" {
   description = "The name of the IAM role"
   type        = string
