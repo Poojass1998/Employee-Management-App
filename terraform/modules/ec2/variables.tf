@@ -30,15 +30,6 @@ variable "security_groups" {
 }
 
 variable "instance_name" {
-  description = "Name tag for the instance"
-  type        = string
-}
-variable "security_groups" {
-  description = "List of security groups for the EC2 instance"
-  type        = list(string)
-}
-
-variable "instance_name" {
   description = "Name of the EC2 instance"
   type        = string
 }
