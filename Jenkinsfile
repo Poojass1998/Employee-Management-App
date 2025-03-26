@@ -5,7 +5,7 @@ pipeline {
         AWS_ACCESS_KEY_ID = credentials('aws_access_key')
         AWS_SECRET_ACCESS_KEY = credentials('aws_secret_key')
         AWS_REGION = 'ap-south-1'
-        S3_BUCKET = 'terraform-state-bucet'
+        S3_BUCKET = 'terraform-state-bucet' 
         DYNAMODB_TABLE = 'terraform-lock'
     }
 
@@ -19,7 +19,9 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 sh '''
-		terraform init \
+                set -e
+                cd terraform
+                terraform init \
                   -backend-config="bucket=$S3_BUCKET" \
                   -backend-config="key=terraform.tfstate" \
                   -backend-config="region=$AWS_REGION" \
@@ -30,14 +32,26 @@ pipeline {
 
         stage('Terraform Plan') {
             steps {
-                sh 'terraform plan -var-file=terraform.tfvars'
+                sh '''
+                set -e
+                cd terraform
+                terraform plan -var-file=terraform.tfvars \
+                  -var "aws_access_key=$AWS_ACCESS_KEY_ID" \
+                  -var "aws_secret_key=$AWS_SECRET_ACCESS_KEY"
+                '''
             }
         }
 
         stage('Terraform Apply') {
             steps {
                 input message: 'Apply Terraform changes?', ok: 'Yes'
-                sh 'terraform apply -auto-approve -var-file=terraform.tfvars'
+                sh '''
+                set -e
+                cd terraform
+                terraform apply -auto-approve -var-file=terraform.tfvars \
+                  -var "aws_access_key=$AWS_ACCESS_KEY_ID" \
+                  -var "aws_secret_key=$AWS_SECRET_ACCESS_KEY"
+                '''
             }
         }
     }
