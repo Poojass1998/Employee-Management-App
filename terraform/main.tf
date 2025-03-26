@@ -37,13 +37,6 @@ module "s3" {
   bucket_name  = var.bucket_name
 }
 
-module "dynamodb" {
-  source       = "./modules/dynamodb"
-  table_name   = var.dynamodb_table_name
-  hash_key     = var.dynamodb_hash_key
-  hash_key_type = "S"
-}
-
 module "iam" {
   source              = "./modules/iam"
   role_name           = var.iam_role_name
