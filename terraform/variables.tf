@@ -120,3 +120,6 @@ variable "azs" {
   description = "List of availability zones"
   type        = list(string)
 }
+
+variable "aws_access_key" {}
+variable "aws_secret_key" {}
