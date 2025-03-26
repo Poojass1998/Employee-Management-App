@@ -23,8 +23,5 @@ skip_final_snapshot = true
 
 bucket_name = "ema-s3-bucket"
 
-dynamodb_table_name = "terraform-lock"
-dynamodb_hash_key = "LockID"
-
 iam_role_name = "ema-iam-role"
 iam_policy_name = "ema-iam-policy"
