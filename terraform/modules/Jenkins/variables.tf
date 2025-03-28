@@ -18,12 +18,12 @@ variable "subnet_id" {
   type        = string
 }
 
-variable "security_group_ids" {
-  description = "List of security group IDs"
-  type        = list(string)
-}
-
 variable "vpc_id" {
   description = "VPC ID where the security group will be created"
   type        = string
+}
+
+variable "vpc_security_group_ids" {
+  description = "List of security groups for Jenkins instance"
+  type        = list(string)
 }

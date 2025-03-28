@@ -24,12 +24,15 @@ variable "key_name" {
   type        = string
 }
 
-variable "security_groups" {
-  description = "List of security groups"
+variable "vpc_security_group_ids" {
+  description = "List of security groups for EC2 instance"
   type        = list(string)
 }
 
 variable "instance_name" {
   description = "Name of the EC2 instance"
   type        = string
+}
+variable "vpc_id" {
+  description = "VPC ID"
 }

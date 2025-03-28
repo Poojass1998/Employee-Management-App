@@ -20,6 +20,6 @@ variable "policy_description" {
 }
 
 variable "policy_document" {
-  description = "IAM policy document as a JSON object"
-  type        = any
+  description = "IAM policy JSON"
+  type        = string
 }

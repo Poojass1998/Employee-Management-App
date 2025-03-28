@@ -1,98 +1,11 @@
-variable "db_instance_name" {
-  description = "The name of the DB instance"
-  type        = string
-}
-
-variable "allocated_storage" {
-  description = "The allocated storage in GB"
-  type        = number
-}
-
-variable "db_engine" {
-  description = "The database engine to use"
-  type        = string
-}
-
-variable "db_engine_version" {
-  description = "The engine version to use"
-  type        = string
-}
-
-variable "instance_class" {
-  description = "The instance type of the RDS instance"
-  type        = string
-}
-
-variable "db_username" {
-  description = "The master username for the database"
-  type        = string
-}
-
-variable "db_password" {
-  description = "The master password for the database"
-  type        = string
-  sensitive   = true
-}
-
-variable "db_parameter_group_name" {
-  description = "The name of the DB parameter group"
-  type        = string
-}
-
-variable "skip_final_snapshot" {
-  description = "Skip final snapshot before deletion"
-  type        = bool
-  default     = true
-}
-
-variable "vpc_security_group_ids" {
-  description = "List of VPC security group IDs"
-  type        = list(string)
-}
-
-variable "db_subnet_group_name" {
-  description = "Name of the DB subnet group"
-  type        = string
-}
-
-variable "bucket_name" {
-  description = "The name of the S3 bucket"
-  type        = string
-}
-
-variable "iam_role_name" {
-  description = "The name of the IAM role"
-  type        = string
-}
-
-variable "iam_policy_name" {
-  description = "The name of the IAM policy"
-  type        = string
-}
-
-variable "ami_id" {
-  description = "The AMI ID to use for the EC2 instances"
-  type        = string
-}
-
-variable "instance_type" {
-  description = "The type of instance to use for EC2 and Jenkins modules"
-  type        = string
-  default     = "t2.micro"
-}
-
-variable "key_name" {
-  description = "The name of the key pair to use for EC2 and Jenkins modules"
-  type        = string
-}
-
+# VPC Variables
 variable "vpc_cidr" {
-  description = "The CIDR block for the VPC"
+  description = "CIDR block for the VPC"
   type        = string
 }
 
 variable "vpc_name" {
-  description = "The name of the VPC"
+  description = "Name of the VPC"
   type        = string
 }
 
@@ -111,5 +24,119 @@ variable "azs" {
   type        = list(string)
 }
 
-variable "aws_access_key" {}
-variable "aws_secret_key" {}
+# EC2 Variables
+variable "instance_type" {
+  description = "Instance type for EC2 instances"
+  type        = string
+}
+
+variable "ami_id" {
+  description = "AMI ID for EC2 instances"
+  type        = string
+}
+
+variable "key_name" {
+  description = "Key pair name for EC2 access"
+  type        = string
+}
+
+variable "vpc_security_group_ids" {
+  description = "List of security group IDs for instances"
+  type        = list(string)
+}
+
+# RDS Variables
+variable "db_instance_name" {
+  description = "Database instance name"
+  type        = string
+}
+
+variable "instance_class" {
+  description = "RDS instance class"
+  type        = string
+}
+
+variable "allocated_storage" {
+  description = "Allocated storage for RDS in GB"
+  type        = number
+}
+
+variable "db_subnet_group_name" {
+  description = "DB subnet group name"
+  type        = string
+}
+
+variable "db_username" {
+  description = "Database username"
+  type        = string
+}
+
+variable "db_password" {
+  description = "Database password"
+  type        = string
+  sensitive   = true
+}
+
+variable "db_engine" {
+  description = "Database engine (e.g., MySQL, PostgreSQL)"
+  type        = string
+}
+
+variable "db_engine_version" {
+  description = "Database engine version"
+  type        = string
+}
+
+variable "db_parameter_group_name" {
+  description = "Database parameter group name"
+  type        = string
+}
+
+variable "skip_final_snapshot" {
+  description = "Whether to skip final snapshot before deletion"
+  type        = bool
+}
+
+# S3 Variables
+variable "bucket_name" {
+  description = "S3 bucket name"
+  type        = string
+}
+
+variable "versioning_enabled" {
+  description = "Enable versioning for S3 bucket"
+  type        = bool
+  default     = false
+}
+
+# IAM Variables
+variable "iam_role_name" {
+  description = "IAM role name"
+  type        = string
+}
+
+variable "iam_policy_name" {
+  description = "IAM policy name"
+  type        = string
+}
+
+# Jenkins Variables
+variable "jenkins_instance_type" {
+  description = "Instance type for Jenkins server"
+  type        = string
+}
+
+variable "jenkins_ami_id" {
+  description = "AMI ID for Jenkins server"
+  type        = string
+}
+
+variable "jenkins_key_name" {
+  description = "Key pair name for Jenkins server"
+  type        = string
+}
+
+variable "jenkins_security_group_ids" {
+  description = "List of security groups for Jenkins server"
+  type        = list(string)
+}

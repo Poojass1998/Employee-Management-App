@@ -46,11 +46,18 @@ variable "skip_final_snapshot" {
 }
 
 variable "vpc_security_group_ids" {
-  description = "List of VPC security group IDs"
+  description = "List of security groups for the RDS instance"
   type        = list(string)
 }
-
+variable "vpc_id" {
+  description = "VPC ID"
+}
 variable "db_subnet_group_name" {
-  description = "Name of the DB subnet group"
+  description = "DB subnet group name"
   type        = string
+}
+
+variable "db_subnet_ids" {
+  description = "List of private subnet IDs for RDS"
+  type        = list(string)
 }
